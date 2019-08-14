@@ -13,8 +13,8 @@ class SamsungTV():
     def __init__(self, host, port=8001, name='SamsungTvRemote'):
         self.connection = websocket.create_connection(
             self._URL_FORMAT.format(**{
-                'host': host, 
-                'port': port, 
+                'host': host,
+                'port': port,
                 'name': self._serialize_string(name)
             })
         )
@@ -53,6 +53,21 @@ class SamsungTV():
             logging.info('Sending key %s', key)
             self.connection.send(payload)
             time.sleep(self._KEY_INTERVAL)
+
+    def open_browser(self, url):
+        payload = json.dumps({
+            'method': 'ms.channel.emit',
+            'params': {
+                "event": 'ed.apps.launch',
+                "to": 'host',
+                "data": {
+                    "appId": 'org.tizen.browser',
+                    "action_type": 'NATIVE_LAUNCH',
+                    "metaTag": url}}})
+
+        logging.info('Opening %s', url)
+        self.connection.send(payload)
+        time.sleep(self._KEY_INTERVAL)
 
     # power
     def power(self):
@@ -98,7 +113,7 @@ class SamsungTV():
 
     # channel
     def channel_list(self):
-        self.send_key('KEY_CH_LIST')    
+        self.send_key('KEY_CH_LIST')
 
     def channel(self, ch):
         for c in str(ch):
