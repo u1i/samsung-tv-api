@@ -1,8 +1,8 @@
 # Samsung TV API
 
-Based on [https://travis-ci.org/vrachieru/samsung-tv-api](https://travis-ci.org/vrachieru/samsung-tv-api)
+Based on [https://github.com/vrachieru/samsung-tv-api](https://github.com/vrachieru/samsung-tv-api)
 
-This project is a library for remote controlling Samsung televisions via a TCP/IP connection. 
+This project is a library for remote controlling Samsung televisions via a TCP/IP connection.
 It currently supports modern (post-2016) TVs with Ethernet or Wi-Fi connectivity.
 
 ## Install
